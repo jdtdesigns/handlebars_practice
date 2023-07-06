@@ -5,9 +5,16 @@ const app = express();
 const PORT = process.env.PORT || 3333;
 
 const isProduction = process.env.PORT;
-const connectionString = 'mysql://ti3an634a6rwkaha:wlyr6sfhsoa3u4f7@uzb4o9e2oe257glt.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/jlepkhxiycgsz5i2';
 
-const connection = mysql.createConnection(isProduction ? connectionString : {
+const cloudConnection = {
+  host: 'uzb4o9e2oe257glt.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+  user: 'ti3an634a6rwkaha',
+  password: 'wlyr6sfhsoa3u4f7',
+  database: 'jlepkhxiycgsz5i2',
+  multipleStatements: true
+};
+
+const connection = mysql.createConnection(isProduction ? cloudConnection : {
   host: 'localhost',
   user: 'root',
   database: 'books_db',
