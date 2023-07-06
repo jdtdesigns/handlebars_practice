@@ -1,7 +1,9 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
+const isProduction = process.env.NODE_ENV === 'production';
+const connectionString = 'mysql://ti3an634a6rwkaha:wlyr6sfhsoa3u4f7@uzb4o9e2oe257glt.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/jlepkhxiycgsz5i2';
 
-const connection = mysql.createConnection({
+const connection = mysql.createConnection(isProduction ? connectionString : {
   host: 'localhost',
   user: 'root',
   database: 'books_db'
