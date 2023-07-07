@@ -1,24 +1,44 @@
-const express = require('express');
-const mysql = require('mysql2');
+const { Sequelize, DataTypes, Model } = require('sequelize');
 
-const app = express();
-const PORT = process.env.PORT || 3333;
-
-const connection = mysql.createConnection({
+const sequelize = new Sequelize('student_app_db', 'root', '', {
   host: 'localhost',
-  user: 'root',
-  database: 'project_tracker_db',
+  dialect: 'mysql'
 });
 
-app.get('/', (clientReq, serverRes) => {
+class Student extends Model { }
 
+Student.init({
+  // Model attributes are defined here
+  first_name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  last_name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
+}, {
+  // Other model options go here
+  sequelize: sequelize, // We need to pass the connection instance
+  modelName: 'student' // We need to choose the model name
 });
 
-app.listen(PORT, () => console.log('Server started...'));
+// 
+sequelize.sync()
+  .then(() => {
+    console.log('db has synced!');
+
+    // Student.create({
+    //   first_name: 'Jamil',
+    //   last_name: 'Barret'
+    // }).then((newStudent) => {
+    //   console.log(newStudent);
+    // });
 
 
-
-
-
-
+    Student.findByPk(1)
+      .then(student => {
+        console.log(student);
+      })
+  });
 
