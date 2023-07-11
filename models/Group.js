@@ -9,6 +9,7 @@ Group.init({
   name: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
     validate: {
       min: 2
     }

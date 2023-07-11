@@ -18,7 +18,7 @@ app.use(express.static('public')); // Allows the client/browser to access any fo
 app.use('/', [api_routes, view_routes]);
 
 // Connect to the db and create all tables based off of our models
-db.sync()
+db.sync({ force: false })
   .then(() => {
     // Start server
     app.listen(PORT, () => console.log('Server started on port %s', PORT));

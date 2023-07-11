@@ -1,9 +1,14 @@
 const router = require('express').Router();
 const Student = require('../models/Student');
+const Group = require('../models/Group');
 
-// localhost:3333/blah/api/test
-router.get('/api/test', (clientReq, serverRes) => {
-  serverRes.send('test works!');
+// Create Group
+router.post('/api/group', (clientReq, serverRes) => {
+  Group.create({
+    name: clientReq.body.name
+  }).then(newGroup => {
+    serverRes.send('group added successfully!');
+  });
 });
 
 module.exports = router;
