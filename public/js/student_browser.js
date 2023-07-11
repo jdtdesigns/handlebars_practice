@@ -21,7 +21,7 @@ function handleStudentSubmit(event) {
       first_name: firstInput.value,
       last_name: lastInput.value,
       email: emailInput.value,
-      group_id: groupSelect.value
+      groupId: groupSelect.value
     })
   }).then(res => {
     alert('Student added successfully!');

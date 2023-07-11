@@ -13,10 +13,14 @@ function handleGroupSubmit(event) {
     body: JSON.stringify({
       name: nameInput.value
     })
-  }).then(res => {
-    alert('Group added successfully!');
-    nameInput.value = '';
-  });
+  })
+    .then(res => res.json())
+    .then(res => {
+      if (res.error) return alert(res.message);
+
+      alert(res.message);
+      nameInput.value = '';
+    });
 }
 
 groupForm.addEventListener('submit', handleGroupSubmit);

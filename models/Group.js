@@ -10,7 +10,10 @@ Group.init({
   name: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+    unique: {
+      args: true,
+      msg: 'Group name is already in use.'
+    },
     validate: {
       min: 2
     }

@@ -23,7 +23,10 @@ Student.init({
   email: {
     type: DataTypes.STRING,
     validate: {
-      isEmail: true
+      isEmail: {
+        args: true,
+        msg: 'The email you entered is not a valid address.'
+      }
     }
   }
 }, {

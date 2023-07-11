@@ -7,20 +7,35 @@ router.post('/api/group', (clientReq, serverRes) => {
   Group.create({
     name: clientReq.body.name
   }).then(newGroup => {
-    serverRes.send('group added successfully!');
+    serverRes.send({
+      message: 'Group added successfully!'
+    });
+  }).catch(err => {
+    serverRes.send({
+      message: err.message,
+      error: true
+    });
   });
 });
 
 // Get all groups
 router.get('/api/groups', (clientReq, serverRes) => {
   // Retrieve all groups from the db
-  Group.findAll()
-    .then(groups => {
-      serverRes.send(groups);
-    });
+  Group.findAll({
+    include: {
+      model: Student,
+      order: [['createdAt', 'DESC']]
+    }
+  }).then(groups => {
+    serverRes.send(groups);
+  });
 });
 
 // Create Student
+router.post('/api/student', (clientReq, serverRes) => {
+  Student.create(clientReq.body)
+    .then(() => serverRes.send('Student added!'));
+});
 
 
 module.exports = router;
