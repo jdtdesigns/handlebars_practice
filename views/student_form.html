@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student App Example - Student Form</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/group">Add a Group</a>
+    <a href="/student" class="active">Add a Student</a>
+  </nav>
+
+  <h1>Add a Student</h1>
+
+  <form id="student-form">
+    <input id="first-input" type="text" placeholder="Enter the student's first name">
+    <input id="last-input" type="text" placeholder="Enter the student's last name">
+    <input id="email-input" type="email" placeholder="Enter the student's email address">
+    <!-- <label for="group-select">Select a Group:</label> -->
+    <select id="group-select">
+      <option>Select a Group</option>
+    </select>
+    <button>Submit</button>
+  </form>
+
+  <script src="/js/student_browser.js"></script>
+</body>
+
+</html>

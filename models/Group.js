@@ -1,5 +1,6 @@
 const { DataTypes, Model } = require('sequelize');
 const db = require('../db/connection');
+const Student = require('./Student');
 
 // Create our Student Model and extend the Model contructor
 class Group extends Model { }
@@ -18,6 +19,9 @@ Group.init({
   sequelize: db,
   modelName: 'group'
 });
+
+Group.hasMany(Student);
+Student.belongsTo(Group);
 
 module.exports = Group;
 

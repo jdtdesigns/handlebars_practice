@@ -11,4 +11,16 @@ router.post('/api/group', (clientReq, serverRes) => {
   });
 });
 
+// Get all groups
+router.get('/api/groups', (clientReq, serverRes) => {
+  // Retrieve all groups from the db
+  Group.findAll()
+    .then(groups => {
+      serverRes.send(groups);
+    });
+});
+
+// Create Student
+
+
 module.exports = router;
