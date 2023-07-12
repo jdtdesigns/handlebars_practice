@@ -15,11 +15,13 @@ app.use(express.json()); // Allows the client/browser to send json in a request
 app.use(express.static('public')); // Allows the client/browser to access any folders or files in public - opens this folder at the root
 
 // Setup Handlebars Template Engine
-app.engine('handlebars', engine({
+app.engine('hbs', engine({
   // layout directory that allows you to avoid repeated html code
-  layoutsDir: './views/layouts'
+  layoutsDir: './views/layouts',
+  // Set the extension for your handlebars files to .hbs
+  extname: 'hbs'
 }));
-app.set('view engine', 'handlebars');
+app.set('view engine', 'hbs');
 app.set('views', './views');
 
 // Load Routes
