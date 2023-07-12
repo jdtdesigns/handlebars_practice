@@ -1,3 +1,4 @@
+const { fn, col } = require('sequelize');
 const router = require('express').Router();
 const Student = require('../models/Student');
 const Group = require('../models/Group');
@@ -24,9 +25,18 @@ router.get('/api/groups', (clientReq, serverRes) => {
   Group.findAll({
     include: {
       model: Student,
-      order: [['createdAt', 'DESC']]
+      separate: true,
+      order: [['createdAt', 'desc']],
+      attributes: [
+        // Convert createdAt field to a formatted date
+        'first_name',
+        'last_name',
+        'email',
+        [fn('date_format', col('createdAt'), '%M %d, %Y'), 'formattedCreatedAt']
+      ]
     }
   }).then(groups => {
+    console.log(groups[0].students);
     serverRes.send(groups);
   });
 });

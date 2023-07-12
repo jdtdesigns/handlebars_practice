@@ -4,7 +4,6 @@ function getGroups() {
   fetch('/api/groups')
     .then(res => res.json())
     .then(groups => {
-      console.log(groups);
       groups.forEach(group => {
         // const outputStudents = () => {
         //   return group.students.map(stu => `
@@ -14,7 +13,7 @@ function getGroups() {
         let studentHTML = '';
 
         group.students.forEach(student => {
-          studentHTML += `<li>${student.first_name} ${student.last_name}</li>`
+          studentHTML += `<li>${student.first_name} ${student.last_name} - Added On: ${student.formattedCreatedAt}</li>`
         });
 
 
