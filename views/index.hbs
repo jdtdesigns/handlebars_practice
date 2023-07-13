@@ -1,5 +1,10 @@
-<h1>Home Page</h1>
+<h1>See What Others Are Thinking</h1>
 <!-- Output each user's email address, using a handlebars each loop -->
-{{#each users}}
-  <p>{{email}}</p>
-{{/each}}
+<ul>
+  {{#each thoughts}}
+    <li>
+      <p>{{text}}</p>
+      <p>Added By: {{user.email}}</p>
+    </li>
+  {{/each}}
+</ul>

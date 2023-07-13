@@ -3,6 +3,11 @@ body {
   font-family: sans-serif;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -12,6 +17,11 @@ header {
 nav {
   display: flex;
   justify-content: end;
+  align-items: center;
+}
+
+nav p {
+  margin: 0 20px;
 }
 
 nav a {
@@ -44,4 +54,12 @@ form > * {
 
 form h1 {
   text-align: center;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+ul li p {
+  margin: 4px;
 }

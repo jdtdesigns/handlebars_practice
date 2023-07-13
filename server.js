@@ -1,5 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const { engine } = require('express-handlebars');
+// Import sessions
+const session = require('express-session');
 // Import our db connection
 const db = require('./db/connection');
 
@@ -7,6 +10,7 @@ const db = require('./db/connection');
 const api_routes = require('./controllers/api_routes');
 const view_routes = require('./controllers/view_routes');
 const user_routes = require('./controllers/user_routes');
+const thought_routes = require('./controllers/thought_routes');
 
 const app = express();
 const PORT = process.env.PORT || 3333;
@@ -27,8 +31,16 @@ app.engine('hbs', engine({
 app.set('view engine', 'hbs');
 app.set('views', './views');
 
+// Load Sessions
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { httpOnly: true }
+}));
+
 // Load Routes
-app.use('/', [api_routes, view_routes, user_routes]);
+app.use('/', [api_routes, view_routes, user_routes, thought_routes]);
 
 // Connect to the db and create all tables based off of our models
 db.sync({ force: false })
