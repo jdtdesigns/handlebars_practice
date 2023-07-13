@@ -25,7 +25,6 @@ User.init({
   hooks: {
     async beforeCreate(user) {
       const hashPassword = await hash(user.password, 10);
-
       user.password = hashPassword;
     }
   }
